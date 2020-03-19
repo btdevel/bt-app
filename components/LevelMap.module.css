@@ -1,4 +1,8 @@
 .level {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.levelMap {
     display: grid;
     align-items: initial;
     gap: 0em 0em;
@@ -6,4 +10,20 @@
     row-gap: 0em;
     grid-template-columns: repeat(22, 1.5rem);
     grid-template-rows: repeat(22, 1.5rem);
+}
+
+/* .levelInfo {
+} */
+
+.levelInfo table {
+    margin-left: 1em;
+}
+
+.levelInfo td {
+    font-weight: bolder;
+}
+
+.levelInfo td+td {
+    font-weight: normal;
+    font-style: italic;
 }

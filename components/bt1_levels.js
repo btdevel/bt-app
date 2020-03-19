@@ -15,6 +15,65 @@ import level13 from '../res/bt1/levels/level_13.json'
 import level14 from '../res/bt1/levels/level_14.json'
 import level15 from '../res/bt1/levels/level_15.json'
 
+// http://bardstale.brotherhood.de/talefiles/forum/viewtopic.php?f=17&t=910&p=3443#p3443
+// 
+// 000 - 001	Load Address of file
+// 002 - 201	Wall Map, one byte per cell (see below),
+//             lines are encoded south to north, west to east
+// 202 - 401	Event Map, one byte per cell (see below), 
+//             lines are encoded south to north, west to east
+// 402 - 409	Level flags, relate to NMAx file (8 levels)
+// 40a - 411	Lock flags, teleport protected level FF, free level 00
+// 412		   monster level for random encounters
+// 413		   PHDO lock, 01 = PHDO locked, disabled
+// 414		   wall set style: 0 = sewer, 1 = Cellar, 2 = catacomb, 3 = Mangar
+// 415 - 416	point of return into Skara Brae map
+// 417		   dungeon direction, 00 = cellars, 03 = towers
+// 418 - 421   dungeon name (9 chars and dc)
+// 422 - 431	coordinates for up to 8 special events 
+// 		      loaded from files (8 coors)
+// 432 - 441	indices into file load table to evaluate file 
+// 		      number to be loaded from there (see below)
+// 442 - 461	anti magic (16 coors)
+// 462 - 471	teleport FROM coors (8 coors)
+// 472 - 481	teleport TO coors (8 coors)
+// 482 - 491	Spinners (8 coors)
+// 492 - 4a1	Smoke (8 coors)
+// 4a2 - 4c1	HP damage zone (16 coors)
+// 4c2 - 4d1	SP regeneration zone (8 coors)
+// 4d2 - 4e1	Stasis chambers (8 coors)
+// 4e2 - 4f1	cells with messages, same sequence as following texts (8 coors)
+// 4f2 - 501	forced encounters, inavoidable fights (8 coors)
+// 502 - 511	type and number of opps from 4f2
+// 512 - 521	text offset, low/high byte, in file text starts actually
+// 		      when you substract -FD20 (8 pairs)
+// 522 - eof	texts
+// _______________________________________________________
+
+// 002 - 201 Wall Map, one byte per cell (see below)
+
+// each byte represent 1 cell. The bits 0 and 1 for the north side,
+// bits 2 and 3 for the south side, bits 4 and 5 east and bits
+// 6 and 7 west.
+
+// 00 = no walls
+// 01 = wall
+// 10 = door
+// 11 = secret door
+// _______________________________________________________
+
+// 202 - 401 Event flags
+
+// bit 0 	set if there are stairs to previous level, depending on 417 up or down
+// bit 1 	set if there are stairs to next level, depending on 417 up or down
+// bit 2 	set if there is a special
+// bit 3 	set if there's darkness 
+// bit 4 	set if there's a trap. 
+// bit 5 	set if there's a portal down
+// bit 6 	set if there's a portal up
+// bit 7 	set if there's a random encounter scheduled for this tile. 
+
+
 const transform_map = (level) => {
     const {width, height} = level;
     const map = Array(height);
@@ -30,16 +89,60 @@ const transform_map = (level) => {
             space.west  = (walls & 0b11000000) >> 6
 
             const spec = level.spec_data[i+j*width]
-            space.darkness = (spec & 0b00001000)!=0;
+
+            space.stairs_prev = (spec & 0b00000001)!=0;
+            space.stairs_next = (spec & 0b00000010)!=0;
+            space.special     = (spec & 0b00000100)!=0;
+            space.darkness    = (spec & 0b00001000)!=0;
+            space.trap        = (spec & 0b00010000)!=0;
+            space.portal_down = (spec & 0b00100000)!=0;
+            space.portal_up   = (spec & 0b01000000)!=0;
+            space.encounter   = (spec & 0b10000000)!=0;
             map[i][j] = space
         }
     }
 
     for(let msg_struct of level.messages) {
         const [[j, i], msg] = msg_struct
-        console.log(`(${i},${j}) -> ${msg}`)
+        // console.log(`(${i},${j}) -> ${msg}`)
         map[i][j].message = msg;
     }
+    for( let encounter of level.encounters) {
+        const [[j, i], [type, num]] = encounter;
+        map[i][j].encounter_num_type = {num: num, type: type}
+    }
+    for( let teleport of level.teleports) {
+        const [from, to] = teleport;
+        from.reverse(); to.reverse();
+        map[from[0]][from[1]].teleport_to = to;
+        map[to[0]][to[1]].teleport_from = from;
+    }
+
+    for( let point of level.hitpoint_damage) {
+        const [j, i] = point;
+        map[i][j].hitpoint_damage = true;
+    }
+    for( let point of level.smoke_zones) {
+        const [j, i] = point;
+        map[i][j].smoke_zone = true;
+    }
+    for( let point of level.antimagic_zones) {
+        const [j, i] = point;
+        map[i][j].antimagic_zone = true;
+    }
+    for( let point of level.spellpoint_restore) {
+        const [j, i] = point;
+        map[i][j].spellpoint_restore = true;
+    }
+    for( let point of level.spinners) {
+        const [j, i] = point;
+        map[i][j].spinner = true;
+    }
+    for( let point of level.stasis_chambers) {
+        const [j, i] = point;
+        map[i][j].stasis_chamber = true;
+    }
+
     return map;
 }
 

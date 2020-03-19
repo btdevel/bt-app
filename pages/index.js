@@ -3,6 +3,7 @@ import LevelMap from '../components/LevelMap'
 
 const Index = () => {
     const levels = loadLevels();
+    
     return (<div>{
         levels.map( level => <LevelMap level={level}/> )
     }</div>)

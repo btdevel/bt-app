@@ -16,9 +16,21 @@ const LevelMap = ({level}) => {
         //map.push(<div key={j}>{row}</div>)
     }
 
-    return (<div>
+    return (<div className={styles.level}>
         <h2>Level {levnum+1}: {level.dungeon_name}</h2>
-        <div className={styles.level}>
+        <div className={styles.levelInfo}>
+            <h3>Level information</h3>
+            <table>
+            <tr><td>Dungeon name: </td><td>{level.dungeon_name}</td></tr>
+            <tr><td>Wall style: </td><td>{level.wall_style}</td></tr>
+            <tr><td>Phase door: </td><td>{level.phase_door ? "Allowed" : "Not allowed"}</td></tr>
+            <tr><td>Direction: </td><td>{level.goes_down ? "Down" : "Up"}</td></tr>
+            <tr><td>Monster difficulty: </td><td>{level.monster_difficulty}</td></tr>
+            <tr><td>City entry/exit: </td><td>{level.entry_position[0]}E, {level.entry_position[1]}N</td></tr>
+            </table>
+        </div>
+        <h3>Level map</h3>
+        <div className={styles.levelMap}>
             {map}
         </div>
     </div>)
