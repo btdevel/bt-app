@@ -7,41 +7,60 @@ const iconMap = {
     "darkness": fa.faCircle,
     "stairs_up": fa.faArrowCircleUp,
     "stairs_down": fa.faArrowCircleDown,
-    // "portal_up": fa.faArrowUp,
-    // "portal_down": fa.faArrowDown,
     "portal_up": fa.faAngleDoubleUp,
     "portal_down": fa.faAngleDoubleDown,
-    // "smoke_zone": fa.faEyeSlash,
     "smoke_zone": fa.faCloud,
-    "trap": fa.faBomb,
+    // "trap": fa.faBomb,
+    "trap": fa.faSkullCrossbones,
     "random_encounter": fa.faDice,
     "forced_encounter": fa.faGhost,
     "stasis_chamber": fa.faStreetView,
     "hitpoint_damage": fa.faAngry,
-    "antimagic_zone": fa.faStopCircle,
+    //"antimagic_zone": fa.faStopCircle,
+    "antimagic_zone": fa.faBan,
     "spellpoint_restore": fa.faBandAid,
     "spinner": fa.faSyncAlt,
+    "teleport_to": fa.faPlaneDeparture,
+    "teleport_from": fa.faPlaneArrival,
 }
 const sizeMap = {
     "random_encounter": "100%",
     "spellpoint_restore": "100%",
+    "teleport_to": "11  0%",
+    "teleport_from": "110%",
 }
 
+const colorTransport = "darkblue"
+const colorEvil = "darkred"
+
 const colorMap = {
-    "forced_encounter": "darkred",
-    "random_encounter": "darkred",
-    "stasis_chamber": "darkred",
-    "trap": "darkred",
-    "portal_up": "darkblue",
-    "portal_down": "darkblue",
-    "stairs_up": "darkblue",
-    "stairs_down": "darkblue",
+    "forced_encounter": colorEvil,
+    "random_encounter": colorEvil,
+    "stasis_chamber": colorEvil,
+    "trap": colorEvil,
+    "hitpoint_damage": colorEvil,
+    "antimagic_zone": colorEvil,
+
+    "portal_up": colorTransport,
+    "portal_down": colorTransport,
+    "stairs_up": colorTransport,
+    "stairs_down": colorTransport,
+    "teleport_from": colorTransport,
+    "teleport_to": colorTransport,
+    "spinner": colorTransport,
+
+    "smoke_zone": "darkgray",
 }
 
 export default function SpecialIcon({type}) {
-    const icon = iconMap[type];
+    let icon = iconMap[type];
     const size = sizeMap[type] || "120%"
     const color = colorMap[type] || "black"
+
+    if( !icon ) {
+        console.warn(`SpecialIcon: Icon name ${type} not found `)
+        icon = fa.faQuestion;
+    }
 
     return (
         <FontAwesomeIcon icon={icon} 

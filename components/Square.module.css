@@ -13,8 +13,8 @@
     position: relative;
 }
 .square:hover {
-    background-color: rgba(250, 0, 250, 0.6);
-    border: solid 1px;
+    background-color: yellow;   
+    /* border: solid 1px;  */
 }
 .darkness {
     background-color: darkgray;
