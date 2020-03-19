@@ -98,6 +98,10 @@ const transform_map = (level) => {
             space.portal_down = (spec & 0b00100000)!=0;
             space.portal_up   = (spec & 0b01000000)!=0;
             space.encounter   = (spec & 0b10000000)!=0;
+
+            space.stairs_down = level.goes_down ? space.stairs_next : space.stairs_prev;
+            space.stairs_up   = level.goes_down ? space.stairs_prev : space.stairs_next;
+            
             map[i][j] = space
         }
     }

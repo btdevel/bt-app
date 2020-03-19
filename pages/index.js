@@ -3,11 +3,11 @@ import LevelMap from '../components/LevelMap'
 
 const Index = () => {
     const levels = loadLevels();
-    
+    // levels.length = 6;
+
     return (<div>{
-        levels.map( level => <LevelMap level={level}/> )
+        levels.map( level => <LevelMap key={level.level_number} level={level}/> )
     }</div>)
-    
 }
 
 export default Index;

@@ -1,3 +1,53 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as fa from '@fortawesome/free-solid-svg-icons'
+
+const iconMap = {
+    "message": fa.faComment,
+    "special": fa.faExclamationTriangle,
+    "darkness": fa.faCircle,
+    "stairs_up": fa.faArrowCircleUp,
+    "stairs_down": fa.faArrowCircleDown,
+    // "portal_up": fa.faArrowUp,
+    // "portal_down": fa.faArrowDown,
+    "portal_up": fa.faAngleDoubleUp,
+    "portal_down": fa.faAngleDoubleDown,
+    // "smoke_zone": fa.faEyeSlash,
+    "smoke_zone": fa.faCloud,
+    "trap": fa.faBomb,
+    "random_encounter": fa.faDice,
+    "forced_encounter": fa.faGhost,
+    "stasis_chamber": fa.faStreetView,
+    "hitpoint_damage": fa.faAngry,
+    "antimagic_zone": fa.faStopCircle,
+    "spellpoint_restore": fa.faBandAid,
+    "spinner": fa.faSyncAlt,
+}
+const sizeMap = {
+    "random_encounter": "100%",
+    "spellpoint_restore": "100%",
+}
+
+const colorMap = {
+    "forced_encounter": "darkred",
+    "random_encounter": "darkred",
+    "stasis_chamber": "darkred",
+    "trap": "darkred",
+    "portal_up": "darkblue",
+    "portal_down": "darkblue",
+    "stairs_up": "darkblue",
+    "stairs_down": "darkblue",
+}
+
+export default function SpecialIcon({type}) {
+    const icon = iconMap[type];
+    const size = sizeMap[type] || "120%"
+    const color = colorMap[type] || "black"
+
+    return (
+        <FontAwesomeIcon icon={icon} 
+        style={{fontSize: size, margin: "3px", color: color}}/>
+    )
+}
 
 // <i class="far fa-arrow-alt-circle-down"></i>
 // <i class="fas fa-arrow-alt-circle-down"></i>
@@ -11,6 +61,7 @@
 // <i class="fas fa-caret-square-up"></i>
 // <i class="fas fa-chevron-circle-down"></i>
 // <i class="fas fa-chevron-circle-up"></i>
+
 // <i class="fas fa-circle"></i>
 // <i class="far fa-circle"></i>
 // <i class="fas fa-expand-arrows-alt"></i>

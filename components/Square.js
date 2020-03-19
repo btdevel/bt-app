@@ -1,12 +1,13 @@
 import styles from './Square.module.css'
-
+import SpecialIcon from './SpecialIcon'
 import { monsters } from './bt1_monsters'
+
 
 const Square = ({element, pos})=> {
     const [i, j] = pos;
     const classNames = [styles.square];
 
-    const style = {};
+    let style = {};
     const border_styles = ['', 'solid 1px', 'dashed 1px', 'red 2px dashed'] // Nothhing, Wall, Door, Secret Door
     style.fontSize = "small"
     
@@ -18,53 +19,54 @@ const Square = ({element, pos})=> {
         style.borderRight = border_styles[element.east];
     if( element.west )
         style.borderLeft = border_styles[element.west];
-        
-    if( element.darkness )
-        style.backgroundColor = "darkgray";
 
-    //row.push(<Square key={[i,j]} style={styles}><span >{i},{j}</span></Square>)
-    const text = [<div>Position:&nbsp;{i}E, {j}N</div>]
-    if(element.message){
-        text.push(<div>Message:&nbsp;{element.message}}</div>)
+    let text = [<div key="position">Position:&nbsp;{i}E, {j}N</div>]
+    let icon = null;
+    const update = (desc, field, new_text, new_icon, new_styles) => {
+        if( field ) { 
+            if( new_text && typeof(new_text)==="string") desc.text.push(<div>{new_text}</div>)
+            if( new_text && typeof(new_text)==="function") desc.text.push(<div>{new_text(field)}</div>)
+            if( new_icon ) desc.icon = new_icon
+            if( new_styles ) desc.style = Object.assign({}, desc.style, new_styles)
+        }
+        return desc;
     }
-    if(element.stairs_prev) text.push(<div>Stairs to previous level</div>)
-    if(element.stairs_next) text.push(<div>Stairs to next level</div>)
-    if(element.portal_down) text.push(<div>Portal down</div>)
-    if(element.portal_up  ) text.push(<div>Portal up</div>)
-
-    // if(element.special    ) text.push(<div>Special</div>)
-
-    // if(element.darkness   ) text.push(<div>Darkness</div>)
-    if(element.smoke_zone ) text.push(<div>Smoke</div>)
-    if(element.trap       ) text.push(<div>Trap</div>)
-    if(element.encounter  ) text.push(<div>Random encounter</div>)
-    if(element.stasis_chamber ) text.push(<div>Stasis chamber</div>)
-    if(element.hitpoint_damage  ) text.push(<div>Hitpoint damage</div>)
-    if(element.antimagic_zone  ) text.push(<div>Antimagic zone</div>)
-    if(element.spellpoint_restore) text.push(<div>Spellpoint restore</div>)
-    if(element.spinner) text.push(<div>Spinner</div>)
     
-    // hitpoint_damage, smoke_zones, stasis_chambers, antimagic_zones, spellpoint_restore, spinners
+    const goes_down = true;
+    const desc = {text: text, icon: icon, style: style};
+
+    update( desc, element.darkness, "Darkness", null, {"backgroundColor": "darkgray"})
+    update( desc, element.special, "Special", "special")
+    
+    update( desc, element.stairs_up, "Stairs up", "stairs_up")
+    update( desc, element.stairs_down, "Stairs down", "stairs_down")
+    update( desc, element.portal_up, "Portal up", "portal_up")
+    update( desc, element.portal_down, "Portal down", "portal_down")
 
 
+    update( desc, element.encounter, "Random encounter", "random_encounter")
 
-    if(element.encounter_num_type  ) {
-        const {num, type} = element.encounter_num_type
-        text.push(<div>Forced encounter: {num} x {monsters[type]}</div>)
-    }
-    if( element.teleport_from ) {
-        const [i, j] = element.teleport_from;
-        text.push(<div>Teleport from {i}E, {j}N</div>)
-    }
-    if( element.teleport_to ) {
-        const [i, j] = element.teleport_to;
-        text.push(<div>Teleport to {i}E, {j}N</div>)
-    }
+    update( desc, element.stasis_chamber, "Stasis chamber", "stasis_chamber")
+    update( desc, element.hitpoint_damage, "Hitpoint damage", "hitpoint_damage")
+    update( desc, element.antimagic_zone, "Antimagic zone", "antimagic_zone")
+    update( desc, element.spellpoint_restore, "Spellpoint restore", "spellpoint_restore")
+    update( desc, element.spinner, "Spinner", "spinner")
+    update( desc, element.smoke_zone, "Smoke zone", "smoke_zone")
+    update( desc, element.trap, "Trap", "trap");
 
-    // if( element.darkness) classNames.push(styles.darkness)
+    update( desc, element.encounter_num_type, ({num, type}) => <span>Forced encounter: {num} x {monsters[type]}</span>, "forced_encounter")
+    update( desc, element.message, field => <span>Message:&nbsp;{field}}</span>, "message")
+    update( desc, element.teleport_from, ([i,j]) => <span>Teleport from {i}E, {j}N</span>, "teleport_from")
+    update( desc, element.teleport_to, ([i,j]) => <span>Teleport to {i}E, {j}N</span>, "teleport_to")
+
+    text = desc.text;
+    icon = desc.icon;
+    style = desc.style;
 
     const content = [];
-    content.push(<span>{text.length>1 ? "?" : ""}</span>)
+    if( icon ){    
+        content.push(<span><SpecialIcon type={icon}/></span>)
+    }
     content.push(<div className={styles.tooltip}><span className={styles.tooltiptext}>{text}</span></div>)
 
     return <div className={classNames} style={style}><div>{content}</div></div>
