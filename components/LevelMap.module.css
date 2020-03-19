@@ -1,0 +1,9 @@
+.level {
+    display: grid;
+    align-items: initial;
+    gap: 0em 0em;
+    column-gap: 0em;
+    row-gap: 0em;
+    grid-template-columns: repeat(22, 1.5rem);
+    grid-template-rows: repeat(22, 1.5rem);
+}

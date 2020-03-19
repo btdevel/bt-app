@@ -1,0 +1,54 @@
+.square {
+    background-color: whitesmoke;
+    outline-style: dotted;
+    outline-width: 1px;
+    outline-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+
+    display: inline-block;
+    /* margin: auto; */
+    position: relative;
+}
+.square:hover {
+    background-color: rgba(250, 0, 250, 0.6);
+    border: solid 1px;
+}
+.darkness {
+    background-color: darkgray;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black;  */
+} 
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+
+  width: 20em;
+  background-color: beige;
+  color: black;
+  align-self: initial;
+  text-align: left;
+  
+  /* text-align: center; */
+  padding: 10px 10px;
+  border: 1px solid black;
+  border-radius: 6px;
+  
+  /* Position the tooltip text */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.square:hover .tooltiptext {
+  visibility: visible;
+}
