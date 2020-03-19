@@ -115,11 +115,11 @@ const transform_map = (level) => {
         const [[j, i], [type, num]] = encounter;
         map[i][j].encounter_num_type = {num: num, type: type}
     }
+
     for( let teleport of level.teleports) {
         const [from, to] = teleport;
-        from.reverse(); to.reverse();
-        map[from[0]][from[1]].teleport_to = to;
-        map[to[0]][to[1]].teleport_from = from;
+        map[from[1]][from[0]].teleport_to = [to[1], to[0]];
+        map[to[1]][to[0]].teleport_from = [from[1], from[0]];
     }
 
     for( let point of level.hitpoint_damage) {
