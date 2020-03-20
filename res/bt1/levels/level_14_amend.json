@@ -1,0 +1,32 @@
+{
+    "specials_info": [
+        [
+            [
+                8, 
+                12
+            ], 
+            "Coffin -> If you open it -> Battle [1 Vampire Lord]"
+        ], 
+        [
+            [
+                8, 
+                21
+            ], 
+            "Two sleeping dragons awake -> Battle [1 Red Dragon, 1 Red Dragon]"
+        ], 
+        [
+            [
+                9, 
+                20
+            ], 
+            "Magic Mouth Riddle: \"Name the greatest son of Odin and win his aid\" -> Answer: THOR -> Item: \"Thor Fgn\""
+        ], 
+        [
+            [
+                20, 
+                3
+            ], 
+            "When you step on this square, each door turns into a wall and each wall into a door, thus allowing you to progress to the stairs."
+        ]
+    ]
+}

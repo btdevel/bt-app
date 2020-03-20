@@ -1,0 +1,60 @@
+{
+    "specials_info": [
+        [
+            [
+                15, 
+                10
+            ], 
+            "A door appears when your party has the \"Silver Circle\", \"Silver Square\" and \"Silver Triangle\" in the inventory."
+        ], 
+        [
+            [
+                21, 
+                10
+            ], 
+            "Magic Mouth Riddle: \"What can bind the mightiest foes?\" -> Answer: SPECTRE SNARE -> Item: \"Spectre Snare\""
+        ], 
+        [
+            [
+                8, 
+                10
+            ], 
+            "(unknown, please go there and report)"
+        ], 
+        [
+            [
+                10, 
+                21
+            ], 
+            "Pool of boiling liquid. When diving in, the party gets teleported to 10E/6N"
+        ], 
+        [
+            [
+                17, 
+                0
+            ], 
+            "Mangar's Treasure Trove -> Battle [1 Black Dragon, 1 Black Dragon]"
+        ], 
+        [
+            [
+                1, 
+                10
+            ], 
+            "Magic Mouth: \"Death to those who would attack the mighty one!\" -> HitPts. Drain!"
+        ], 
+        [
+            [
+                1, 
+                20
+            ], 
+            "One party member gets possessed and attacks the rest of the party."
+        ], 
+        [
+            [
+                20, 
+                10
+            ], 
+            "Mangar -> Battle [2 Demon Lords, 3 Vampire Lords, 1 Mangar] -> If you win, you've beaten the game. Kylearan appears and gives each character 300.000 XP and Gold. The party gets teleported to the Adventurer's Guild."
+        ]
+    ]
+}

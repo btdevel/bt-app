@@ -1,0 +1,39 @@
+{
+        "specials_info": [
+        [
+            [
+                10, 
+                13
+            ], 
+            "Magic Mouth Riddle: \"Name the one of cold, foretold twofold.\"; Answer: \"STONE GOLEM\"; Teleports you to 9E/8N"
+        ], 
+        [
+            [
+                2, 
+                12
+            ], 
+            "Magic Mouth Riddle: \"Name the endless bypass and your path shall be guaranteed.\"; Answer: \"SINISTER\"; Opens the door at 1E/6N"
+        ], 
+        [
+            [
+                20, 
+                2
+            ], 
+            "Important item: \"Silver Triangle\""
+        ], 
+        [
+            [
+                1, 
+                4
+            ], 
+            "Crystal Golem: The \"Crystal Sword\" is the only weapon that beats this guardian."
+        ], 
+        [
+            [
+                13, 
+                17
+            ], 
+            "Kylearan; Important item: \"Onyx Key\""
+        ]
+    ]
+}

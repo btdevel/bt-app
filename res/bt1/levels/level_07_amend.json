@@ -1,0 +1,32 @@
+{
+    "specials_info": [
+        [
+            [
+                14, 
+                9
+            ], 
+            "Throne: If a bard sits down on, the secret door to the north opens. If other characters try to sit on the throne, they loose 15 HP."
+        ], 
+        [
+            [
+                18, 
+                9
+            ], 
+            "Captain of the Guard [Master Ninja] -> Battle"
+        ], 
+        [
+            [
+                6, 
+                16
+            ], 
+            "Six warriors in robes guard the room [6 Berserker] -> Battle"
+        ], 
+        [
+            [
+                0, 
+                19
+            ], 
+            "Important item: \"Crystal Sword\""
+        ]
+    ]
+}
