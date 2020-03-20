@@ -6,14 +6,15 @@ const LevelMap = ({level, makeLink}) => {
     const levnum = level.level_number;
     console.warn({levnum: levnum})
     makeLink = makeLink || ((num, child) => child)
+    const prevIsCity = levnum==level.nmax[0];
     const linkNext = child => makeLink(levnum+1, child)
-    const linkPrev = child => makeLink(levnum-1, child)
+    const linkPrev = child => makeLink(prevIsCity ? 'city' : levnum-1, child)
     const linkUp = level.goes_down ? linkPrev : linkNext
     const linkDown = level.goes_down ? linkNext : linkPrev
 
     const {width, height} = level
     const map = []
-    for (let j = height-1; j >= 0; j--) {   
+    for (let j = height-1; j >= 0; j--) {
         const row = []
         for (let i = 0; i < width; i++) {
             const element = lmap[i][j];
@@ -24,7 +25,7 @@ const LevelMap = ({level, makeLink}) => {
     
     return (<div key={levnum} className={styles.level}>
         <h2>Level {levnum+1}: {level.dungeon_name} {levnum - level.nmax[0] + 1}
-        {linkPrev(<button>-</button>)}{linkNext(<button>+</button>)}
+        &nbsp;{levnum>0 ? linkPrev(<button>-</button>) : ""}&nbsp;{levnum < 15 ? linkNext(<button>+</button>) : ""}
         </h2>
         <div className={styles.levelInfo}>
             <h3>Level information</h3>

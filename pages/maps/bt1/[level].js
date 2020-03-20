@@ -1,19 +1,19 @@
+import React from 'react'
+import Link from 'next/link';
+import {useRouter} from 'next/router';
+
 import Layout from '../../../components/Layout'
 
-import { loadLevels, loadLevel } from '../../../components/bt1_levels'
+import {loadLevel } from '../../../components/bt1_levels'
 import LevelMap from '../../../components/LevelMap'
 
-import {withRouter, useRouter} from 'next/router';
-import Link from 'next/link';
 
-import React from 'react'
-import { render } from 'react-dom';
-
-const makeLink = (num,child) => (
-        <Link href="/maps/bt1/[level]" as={`/maps/bt1/${num}`}>
-            <a>{child}</a>
-        </Link>
-        )
+const makeLink = (num,child) => {
+    if( (typeof num) === "string" )
+        return (<Link href={`/maps/bt1/${num}`}><a>{child}</a></Link>)
+    else
+        return (<Link href="/maps/bt1/[level]" as={`/maps/bt1/${num}`}><a>{child}</a></Link>)
+}
 
 class LevelX extends React.Component {
     constructor(props) {
