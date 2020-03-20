@@ -17,6 +17,11 @@ const update = (desc, field, new_text, new_icon, new_styles) => {
     return desc;
 }
 
+const splitString = (text) => (
+    text.split("\n").map((line, index) =>
+        <span key={index}>{line}<br/></span>
+    )
+)
 const updateDescription = (element, desc) => {
     update( desc, element.darkness, "Darkness", null, {"backgroundColor": "darkgray"})
     update( desc, element.special, "Special", "special")
@@ -33,7 +38,7 @@ const updateDescription = (element, desc) => {
     update( desc, element.teleport_from, ([i,j]) => <span>Teleport from {i}E, {j}N</span>, "teleport_from")
     update( desc, element.teleport_to, ([i,j]) => <span>Teleport to {i}E, {j}N</span>, "teleport_to")
     update( desc, element.encounter_num_type, ({num, type}) => <span>Forced encounter: {num} x {monsters[type]}</span>, "forced_encounter")
-    update( desc, element.message, field => <span>Message:&nbsp;{field}}</span>, "message")
+    update( desc, element.message, field => <span>Message:&nbsp;{splitString(field)}</span>, "message")
 
     update( desc, element.stairs_up, "Stairs up", "stairs_up")
     update( desc, element.stairs_down, "Stairs down", "stairs_down")
@@ -42,7 +47,7 @@ const updateDescription = (element, desc) => {
     return desc
 }
 
-const Square = ({element, pos})=> {
+const Square = ({element, pos, linkUp, linkDown})=> {
     const [i, j] = pos;
     const classNames = [styles.square];
 
@@ -65,8 +70,12 @@ const Square = ({element, pos})=> {
     style = desc.style;
     text = desc.text;
 
+    const goesUp = element.stairs_up || element.portal_up
+    const goesDown = element.stairs_down || element.portal_down
+    let linkFunc = goesUp ? linkUp : (goesDown ? linkDown : content => content);
+
     return (<div className={classNames} style={style}>
-        {icon ? <span><SpecialIcon type={icon}/></span> : ""}
+        {icon ? linkFunc(<span><SpecialIcon type={icon}/></span>) : ""}
         <div className={styles.tooltip}><span className={styles.tooltiptext}>{text}</span></div>
     </div>)
 }
