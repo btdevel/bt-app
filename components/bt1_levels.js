@@ -92,7 +92,7 @@ const transform_map = (level) => {
 
             space.stairs_prev = (spec & 0b00000001)!=0;
             space.stairs_next = (spec & 0b00000010)!=0;
-            space.special     = (spec & 0b00000100)!=0;
+            // space.special     = (spec & 0b00000100)!=0;
             space.darkness    = (spec & 0b00001000)!=0;
             space.trap        = (spec & 0b00010000)!=0;
             space.portal_down = (spec & 0b00100000)!=0;
@@ -146,6 +146,13 @@ const transform_map = (level) => {
         const [j, i] = point;
         map[i][j].stasis_chamber = true;
     }
+    if (level.specials_info) {
+        for (let point of level.specials_info) {
+            const [[j, i], msg] = point;
+            map[i][j].special = msg;
+            console.log({point: [i,j], msg: msg})
+        }
+    }
 
     return map;
 }
@@ -165,4 +172,29 @@ export function loadLevels(){
         level10, level11, level12, level13, level14, level15];
 
     return levels.map(transform_level);
+}
+
+export async function loadLevel(levnum) {
+    const lnum = levnum.toString().padStart(2, '0')
+    const levelImport = import(`../res/bt1/levels/level_${lnum}.json`)
+    const levelAmendImport = import(`../res/bt1/levels/level_${lnum}_amend.json`)
+
+    const levelRaw = (await levelImport).default
+    try {
+        const levelExtra = (await levelAmendImport).default
+        Object.assign(levelRaw, levelExtra)
+    }
+    catch{
+    }
+    console.log(levelRaw)
+    const level = transform_level(levelRaw, levnum)
+    return level;
+}
+
+export async function loadLevelsA() {
+    const levels = Array();
+    for(let i=0; i<16; i++) {
+        levels.push(loadLevel(i))
+    }
+    return levels;
 }

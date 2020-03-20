@@ -43,8 +43,8 @@
   
   /* Position the tooltip text */
   position: absolute;
-  top: 20px;
-  left: 20px;
+  bottom: 0rem;
+  left: 0.5rem;
   z-index: 1;
 }
 

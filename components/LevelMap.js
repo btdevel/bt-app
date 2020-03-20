@@ -4,7 +4,7 @@ import styles from './LevelMap.module.css'
 const LevelMap = ({level, makeLink}) => {
     const lmap = level.map;
     const levnum = level.level_number;
-
+    console.warn({levnum: levnum})
     makeLink = makeLink || ((num, child) => child)
     const linkNext = child => makeLink(levnum+1, child)
     const linkPrev = child => makeLink(levnum-1, child)
@@ -19,11 +19,9 @@ const LevelMap = ({level, makeLink}) => {
             const element = lmap[i][j];
             map.push(<Square key={[i,j]} element={element} pos={[i, j]} linkUp={linkUp} linkDown={linkDown}/>)
         }
-        //map.push(<div key={j}>{row}</div>)
     }
 
     
-
     return (<div key={levnum} className={styles.level}>
         <h2>Level {levnum+1}: {level.dungeon_name} {levnum - level.nmax[0] + 1}
         {linkPrev(<button>-</button>)}{linkNext(<button>+</button>)}

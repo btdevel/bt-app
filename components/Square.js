@@ -6,11 +6,15 @@ import { monsters } from './bt1_monsters'
 
 const update = (desc, field, new_text, new_icon, new_styles) => {
     if( field ) { 
-        // const key = new_icon || "darkness"
-        // const key = "foo"
-        const key = Math.random()
-        if( new_text && typeof(new_text)==="string") desc.text.push(<div key={key}>{new_text}</div>)
-        if( new_text && typeof(new_text)==="function") desc.text.push(<div key={key}>{new_text(field)}</div>)
+        const key = Math.random() // Not nice, but no performance issue here
+        if( new_text ){
+            if( typeof(new_text)==="string") 
+                desc.text.push(<div key={key}>{new_text}</div>)
+            else if( typeof(new_text)==="function") 
+                desc.text.push(<div key={key}>{new_text(field)}</div>)
+            else
+                desc.text.push(<div key={key}>??? {new_text}</div>)
+        }
         if( new_icon ) desc.icon = new_icon
         if( new_styles ) desc.style = Object.assign({}, desc.style, new_styles)
     }
@@ -24,7 +28,6 @@ const splitString = (text) => (
 )
 const updateDescription = (element, desc) => {
     update( desc, element.darkness, "Darkness", null, {"backgroundColor": "darkgray"})
-    update( desc, element.special, "Special", "special")
 
     update( desc, element.encounter, "Random encounter", "random_encounter")
     update( desc, element.stasis_chamber, "Stasis chamber", "stasis_chamber")
@@ -37,8 +40,9 @@ const updateDescription = (element, desc) => {
 
     update( desc, element.teleport_from, ([i,j]) => <span>Teleport from {i}E, {j}N</span>, "teleport_from")
     update( desc, element.teleport_to, ([i,j]) => <span>Teleport to {i}E, {j}N</span>, "teleport_to")
-    update( desc, element.encounter_num_type, ({num, type}) => <span>Forced encounter: {num} x {monsters[type]}</span>, "forced_encounter")
-    update( desc, element.message, field => <span>Message:&nbsp;{splitString(field)}</span>, "message")
+    update( desc, element.encounter_num_type, ({num, type}) => <span>Forced encounter: <i>{num} x {monsters[type]}</i></span>, "forced_encounter")
+    update( desc, element.special, msg => (typeof msg==="string" ? <span>Special: <i>{splitString(msg)}</i></span> : "Special"), "special")
+    update( desc, element.message, msg => <span>Message:&nbsp;<i>{splitString(msg)}</i></span>, "message")
 
     update( desc, element.stairs_up, "Stairs up", "stairs_up")
     update( desc, element.stairs_down, "Stairs down", "stairs_down")
