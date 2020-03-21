@@ -1,23 +1,44 @@
 .square {
-    background-color: whitesmoke;
     outline-style: dotted;
     outline-width: 1px;
     outline-color: black;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+    /* text-align: center;
     justify-content: center;
-    align-content: center;
+    align-content: center; */
+
+     box-sizing: border-box;
+    /* overflow: hidden; */
+    width: 1.5rem;
+    height: 1.5rem;
 
     display: inline-block;
     /* margin: auto; */
     position: relative;
+    font-size: small;
 }
-.square:hover {
-    background-color: yellow;   
-    /* border: solid 1px;  */
+
+.square a {
+  outline: none;
 }
-.darkness {
-    background-color: darkgray;
+
+.contentLight {
+  background-color: whitesmoke;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.contentDark {
+  background-color: darkgray; 
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.square:hover .contentLight, .square:hover .contentDark {
+  background-color: yellow;   
 }
 
 .tooltip {
@@ -37,9 +58,9 @@
   text-align: left;
   
   /* text-align: center; */
-  padding: 10px 10px;
+  padding: 0.3rem 0.7rem;
   border: 1px solid black;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   
   /* Position the tooltip text */
   position: absolute;

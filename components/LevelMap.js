@@ -8,9 +8,10 @@ const LevelMap = ({level, makeLink}) => {
     makeLink = makeLink || ((num, child) => child)
     const prevIsCity = levnum==level.nmax[0];
     const linkNext = child => makeLink(levnum+1, child)
-    const linkPrev = child => makeLink(prevIsCity ? 'city' : levnum-1, child)
-    const linkUp = level.goes_down ? linkPrev : linkNext
-    const linkDown = level.goes_down ? linkNext : linkPrev
+    const linkPrev = child => makeLink(levnum-1, child)
+    const linkCity = child => makeLink('city', child)
+    const linkUp = level.goes_down ? (prevIsCity ? linkCity : linkPrev) : linkNext
+    const linkDown = level.goes_down ? linkNext : (prevIsCity ? linkCity : linkPrev)
 
     const {width, height} = level
     const map = []
@@ -27,8 +28,8 @@ const LevelMap = ({level, makeLink}) => {
         <h2>Level {levnum+1}: {level.dungeon_name} {levnum - level.nmax[0] + 1}
         &nbsp;{levnum>0 ? linkPrev(<button>-</button>) : ""}&nbsp;{levnum < 15 ? linkNext(<button>+</button>) : ""}
         </h2>
-        <div className={styles.levelInfo}>
-            <h3>Level information</h3>
+        <details className={styles.levelInfo}>
+            <summary><b>Level information</b></summary>
             <table>
                 <tbody>
                     <tr><td>Dungeon name: </td><td>{level.dungeon_name}</td></tr>
@@ -42,11 +43,11 @@ const LevelMap = ({level, makeLink}) => {
                     <tr><td>NMAX: </td><td>{level.nmax.join(", ")}</td></tr> */}
                 </tbody>
             </table>
-        </div>
+        </details>
         <h3>Level map</h3>
-        <div className={styles.levelMap}>
+        <MapGrid>
             {map}
-        </div>
+        </MapGrid>
     </div>)
 }
 

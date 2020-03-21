@@ -24,10 +24,7 @@ class LevelX extends React.Component {
     render() {
         const level = this.state.level;
 
-        return (
-            <Layout>
-                {level ? <LevelMap level={level} makeLink={makeLink}/> : "Loading..."}
-            </Layout>)
+        return (level ? <LevelMap level={level} makeLink={makeLink}/> : <span>"Loading..."</span>)
     }
 
     async fetchLevel() {
@@ -54,7 +51,10 @@ const Level = () => {
 
     if( levnum==undefined ) return <span></span>
 
-    return <LevelX levnum={levnum}/>
+    return (
+        <Layout>
+            <LevelX levnum={levnum}/>
+        </Layout>)
 }
 
 
