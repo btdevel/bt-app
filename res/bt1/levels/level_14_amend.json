@@ -5,21 +5,21 @@
                 8, 
                 12
             ], 
-            "Coffin -> If you open it -> Battle [1 Vampire Lord]"
+            "There is a large black coffin...\n If you open it: A Vampire Lord rises from the coffin...\n Battle vs. [1 Vampire Lord]"
         ], 
         [
             [
                 8, 
                 21
             ], 
-            "Two sleeping dragons awake -> Battle [1 Red Dragon, 1 Red Dragon]"
+            "Two sleeping dragons awaken...\n Battle vs. [1 Red Dragon, 1 Red Dragon]"
         ], 
         [
             [
                 9, 
                 20
             ], 
-            "Magic Mouth Riddle: \"Name the greatest son of Odin and win his aid\" -> Answer: THOR -> Item: \"Thor Fgn\""
+            "Magic Mouth Riddle:\n\n Name the greatest son of Odin and win his aid\n\n Answer: THOR\n Item: THOR FGN"
         ], 
         [
             [

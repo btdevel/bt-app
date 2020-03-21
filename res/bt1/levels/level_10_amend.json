@@ -5,35 +5,43 @@
                 10, 
                 13
             ], 
-            "Magic Mouth Riddle: \"Name the one of cold, foretold twofold.\"; Answer: \"STONE GOLEM\"; Teleports you to 9E/8N"
+            "Magic Mouth Riddle:\n\n Name the one of cold,\n foretold twofold.\n\n; Answer: STONE GOLEM\n Teleports you to 8N 9E",
+            [
+                8, 
+                9
+            ]
         ], 
         [
             [
                 2, 
                 12
             ], 
-            "Magic Mouth Riddle: \"Name the endless bypass and your path shall be guaranteed.\"; Answer: \"SINISTER\"; Opens the door at 1E/6N"
+            "Magic Mouth Riddle:\n\n Name the endless bypass and your path shall be guaranteed.\n\n Answer: SINISTER\n Opens the door at 6N 1E",
+            [
+                6, 
+                1
+            ]
         ], 
         [
             [
                 20, 
                 2
             ], 
-            "Important item: \"Silver Triangle\""
+            "Important item: SILVER TRIANGLE"
         ], 
         [
             [
                 1, 
                 4
             ], 
-            "Crystal Golem: The \"Crystal Sword\" is the only weapon that beats this guardian."
+            "Crystal Golem: The CRYSTAL SWORD is the only weapon that beats this guardian."
         ], 
         [
             [
                 13, 
                 17
             ], 
-            "Kylearan; Important item: \"Onyx Key\""
+            "Kylearan\nImportant item: ONYX KEY to unlock Mangar's Tower (not he gates!)"
         ]
     ]
 }
