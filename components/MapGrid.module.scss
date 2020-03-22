@@ -1,0 +1,126 @@
+$col-width: 1.5rem;
+$row-height: 1.5rem;
+$font-size: 0.7rem;
+$gap-width: 1px;
+
+table.grid {
+    font-family: sans-serif;
+    border-collapse: collapse;
+
+    td {
+        width: $col-width;
+        height: $row-height;
+        padding: 0px;
+    }
+    td, th {    
+        border-width: 1px;
+        border-color: lightgray;
+        border-style: solid;        
+    }
+    th {
+        font-size: x-small;
+        font-weight: normal;
+        color: darkgray;
+
+    }
+    th.edge {
+        border-style: solid solid none none;
+    }
+    th.left {
+        border-style: solid solid none none;
+        width: auto;
+    }
+    th.bottom {
+        border-style: solid solid none none;
+    }
+}
+
+
+
+.outerGrid {
+    font-size: small;
+    display: grid;
+    gap: $gap-width;
+    grid-template-columns: $col-width auto;
+    grid-template-rows: auto $row-height;
+}
+
+.vertNumbering {
+    display: grid;
+    gap: $gap-width;
+    grid-template-columns: repeat(1, $col-width);
+    grid-template-rows: repeat(22, $row-height);
+}
+.horzNumbering {
+    display: grid;
+    gap: $gap-width;
+    grid-template-columns: repeat(22, $col-width);
+    grid-template-rows: repeat(1, $row-height);
+}
+
+.levelMap {
+    display: grid;
+    align-items: initial;
+    gap: $gap-width;
+    grid-template-columns: repeat(22, $col-width);
+    grid-template-rows: repeat(22, $row-height);
+}
+
+.gridCellBase {
+    font-size: $font-size;
+    /* outline-style: dotted;
+    outline-width: 1px;
+    outline-color: black; */
+    border-width: 1px;
+    border-color: black;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: $col-width;
+    height: $row-height;
+    display: inline-block;
+    position: relative;
+    // background-color: red;
+}
+
+.gridInner {
+    vertical-align: middle;
+    display: inline;
+    // background-color: yellowgreen;
+}
+
+.gridCell {
+    @extend .gridCellBase;
+    // background-color: whitesmoke;
+    // border-style: dotted;
+    // border-style: solid solid none none;
+    border-color: lightgray;
+    border-width: 1px;
+}
+.gridCellHorz {
+    @extend .gridCellBase;
+    // background-color: blanchedalmond;
+    // border-style: dotted dotted none dotted;
+    border-style: solid solid none none;
+    border-color: lightgray;
+    border-width: 1px;
+    text-align: center;
+}
+.gridCellVert {
+    @extend .gridCellBase;
+    // background-color: blanchedalmond;
+    border-style: solid solid none none;
+    border-color: lightgray;
+    border-width: 1px;
+
+    text-align: right;
+    margin: auto;
+}
+.gridCellEdge {
+    @extend .gridCellBase;
+    // background-color: blanchedalmond;
+    border-style: solid solid none none;
+    border-color: lightgray;
+    border-width: 1px;
+
+    // border-style: dotted dotted none none;
+}

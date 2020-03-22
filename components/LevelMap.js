@@ -1,5 +1,6 @@
 import Square from './Square'
 import styles from './LevelMap.module.css'
+import MapGrid from './MapGrid'
 
 const LevelMap = ({level, makeLink}) => {
     const lmap = level.map;
@@ -45,7 +46,10 @@ const LevelMap = ({level, makeLink}) => {
             </table>
         </details>
         <h3>Level map</h3>
-        <MapGrid>
+        {/* <div className={styles.levelMap}>
+            {map}
+        </div> */}
+        <MapGrid width={level.width} height={level.height}>
             {map}
         </MapGrid>
     </div>)
