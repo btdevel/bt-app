@@ -1,4 +1,6 @@
+
 // import App from 'next/app'
+import "normalize.css"
 
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />

@@ -1,7 +1,7 @@
 import styles from './Square.module.css'
 import SpecialIcon from './SpecialIcon'
 import { monsters } from './bt1_monsters'
-
+import ToolTip from './ToolTip'
 
 
 const update = (desc, field, new_text, new_icon, new_class, new_styles) => {
@@ -79,12 +79,14 @@ const Square = ({ element, pos, linkUp, linkDown }) => {
 
     // console.log(desc.style)
     return (
-        <div className={styles.square} style={desc.style}>
-            <div className={desc.className}>
-                {desc.icon ? linkFunc(<span><SpecialIcon type={desc.icon} /></span>) : ""}
+            <div className={styles.square} style={desc.style}>
+                <ToolTip text={desc.text}>
+                    <div className={desc.className}>
+                        {desc.icon ? linkFunc(<span><SpecialIcon type={desc.icon} /></span>) : <span></span>}
+                    </div>
+                </ToolTip>
             </div>
-            <div className={styles.tooltip}><span className={styles.tooltiptext}>{desc.text}</span></div>
-        </div>)
+        )
 }
 
 export default Square;

@@ -27,7 +27,7 @@ const LevelMap = ({level, makeLink}) => {
     
     return (<div key={levnum} className={styles.level}>
         <h2>Level {levnum+1}: {level.dungeon_name} {levnum - level.nmax[0] + 1}
-        &nbsp;{levnum>0 ? linkPrev(<button>-</button>) : ""}&nbsp;{levnum < 15 ? linkNext(<button>+</button>) : ""}
+        <span style={{fontSize: "0.51rem"}}>&nbsp;{levnum>0 ? linkPrev(<button>-</button>) : ""}&nbsp;{levnum < 15 ? linkNext(<button>+</button>) : ""}</span>
         </h2>
         <details className={styles.levelInfo}>
             <summary><b>Level information</b></summary>

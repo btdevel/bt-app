@@ -40,20 +40,20 @@ const MapGridTable = ({width, height, showNumbers, children}) => {
 
     for(let i=0; i<height; i++){
         const row = [];
-        row.push(<th className={css.left}>{height-i}</th>)
+        row.push(<th key={i} className={css.left}>{height-i}</th>)
         for(let j=0; j<width; j++){
-            row.push(<td>{children[count]}</td>)
+            row.push(<td key={[i,j]}>{children[count]}</td>)
             count++;
         }
-        content.push(<tr>{row}</tr>)
+        content.push(<tr key={i}>{row}</tr>)
     }
-    const row = [<th className={css.edge}></th>];
+    const row = [<th key="edge" className={css.edge}></th>];
     for(let j=0; j<width; j++){
-        row.push(<th className={css.bottom}>{j}</th>)
+        row.push(<th key={j} className={css.bottom}>{j}</th>)
     }
-    content.push(<tr>{row}</tr>)
+    content.push(<tr key="bottom">{row}</tr>)
 
-return <table className={css.grid}>{content}</table>
+return <table className={css.grid}><tbody>{content}</tbody></table>
 }
 
 const MapGrid = ({type, ...props}) => (

@@ -1,19 +1,19 @@
-import level00 from '../res/bt1/levels/level_00.json'
-import level01 from '../res/bt1/levels/level_01.json'
-import level02 from '../res/bt1/levels/level_02.json'
-import level03 from '../res/bt1/levels/level_03.json'
-import level04 from '../res/bt1/levels/level_04.json'
-import level05 from '../res/bt1/levels/level_05.json'
-import level06 from '../res/bt1/levels/level_06.json'
-import level07 from '../res/bt1/levels/level_07.json'
-import level08 from '../res/bt1/levels/level_08.json'
-import level09 from '../res/bt1/levels/level_09.json'
-import level10 from '../res/bt1/levels/level_10.json'
-import level11 from '../res/bt1/levels/level_11.json'
-import level12 from '../res/bt1/levels/level_12.json'
-import level13 from '../res/bt1/levels/level_13.json'
-import level14 from '../res/bt1/levels/level_14.json'
-import level15 from '../res/bt1/levels/level_15.json'
+// import level00 from '../res/bt1/levels/level_00.json'
+// import level01 from '../res/bt1/levels/level_01.json'
+// import level02 from '../res/bt1/levels/level_02.json'
+// import level03 from '../res/bt1/levels/level_03.json'
+// import level04 from '../res/bt1/levels/level_04.json'
+// import level05 from '../res/bt1/levels/level_05.json'
+// import level06 from '../res/bt1/levels/level_06.json'
+// import level07 from '../res/bt1/levels/level_07.json'
+// import level08 from '../res/bt1/levels/level_08.json'
+// import level09 from '../res/bt1/levels/level_09.json'
+// import level10 from '../res/bt1/levels/level_10.json'
+// import level11 from '../res/bt1/levels/level_11.json'
+// import level12 from '../res/bt1/levels/level_12.json'
+// import level13 from '../res/bt1/levels/level_13.json'
+// import level14 from '../res/bt1/levels/level_14.json'
+// import level15 from '../res/bt1/levels/level_15.json'
 
 // http://bardstale.brotherhood.de/talefiles/forum/viewtopic.php?f=17&t=910&p=3443#p3443
 // 
@@ -166,32 +166,36 @@ const transform_level = (level, index) => {
     return level;
 }
 
-export function loadLevels(){
-    const levels = [level00, level01, level02, level03, level04,
-        level05, level06, level07, level08, level09,
-        level10, level11, level12, level13, level14, level15];
+// export function loadLevels(){
+//     const levels = [level00, level01, level02, level03, level04,
+//         level05, level06, level07, level08, level09,
+//         level10, level11, level12, level13, level14, level15];
 
-    return levels.map(transform_level);
-}
+//     return levels.map(transform_level);
+// }
 
 export async function loadLevel(levnum) {
     const lnum = levnum.toString().padStart(2, '0')
-    const levelImport = import(`../res/bt1/levels/level_${lnum}.json`)
-    const levelAmendImport = import(`../res/bt1/levels/level_${lnum}_amend.json`)
 
-    const levelRaw = (await levelImport).default
+    const levelRaw = {}
     try {
+        const levelImport = import(`../res/bt1/levels/level_${lnum}.json`)
+        const levelBase = (await levelImport).default
+        Object.assign(levelRaw, levelBase)
+
+        const levelAmendImport = import(`../res/bt1/levels/level_${lnum}_amend.json`)
         const levelExtra = (await levelAmendImport).default
         Object.assign(levelRaw, levelExtra)
     }
     catch{
+        console.log("Could not load level")
     }
     console.log(levelRaw)
     const level = transform_level(levelRaw, levnum)
     return level;
 }
 
-export async function loadLevelsA() {
+export async function loadLevels() {
     const levels = Array();
     for(let i=0; i<16; i++) {
         levels.push(loadLevel(i))

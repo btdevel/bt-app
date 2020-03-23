@@ -11,6 +11,7 @@ table.grid {
         width: $col-width;
         height: $row-height;
         padding: 0px;
+        text-align: center;
     }
     td, th {    
         border-width: 1px;
