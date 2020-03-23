@@ -1,4 +1,4 @@
-import styles from './Square.module.css'
+import styles from './Square.module.scss'
 import SpecialIcon from './SpecialIcon'
 import { monsters } from './bt1_monsters'
 import ToolTip from './ToolTip'

@@ -1,11 +1,13 @@
-$col-width: 1.5rem;
-$row-height: 1.5rem;
-$font-size: 0.7rem;
-$gap-width: 1px;
+$col-width: 1em;
+$row-height: 1em;
+$font-size: 0.5em;
+$gap-width: 0px;
 
 table.grid {
     font-family: sans-serif;
-    border-collapse: collapse;
+    // border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: $gap-width;
 
     td {
         width: $col-width;
@@ -19,7 +21,7 @@ table.grid {
         border-style: solid;        
     }
     th {
-        font-size: x-small;
+        font-size: 50%;
         font-weight: normal;
         color: darkgray;
 
@@ -69,18 +71,15 @@ table.grid {
 
 .gridCellBase {
     font-size: $font-size;
-    /* outline-style: dotted;
-    outline-width: 1px;
-    outline-color: black; */
     border-width: 1px;
-    border-color: black;
+    border-color: lightgray;
     box-sizing: border-box;
     overflow: hidden;
     width: $col-width;
     height: $row-height;
     display: inline-block;
     position: relative;
-    // background-color: red;
+
 }
 
 .gridInner {
@@ -91,37 +90,19 @@ table.grid {
 
 .gridCell {
     @extend .gridCellBase;
-    // background-color: whitesmoke;
-    // border-style: dotted;
-    // border-style: solid solid none none;
-    border-color: lightgray;
-    border-width: 1px;
+    border-style: none;
 }
 .gridCellHorz {
     @extend .gridCellBase;
-    // background-color: blanchedalmond;
-    // border-style: dotted dotted none dotted;
     border-style: solid solid none none;
-    border-color: lightgray;
-    border-width: 1px;
     text-align: center;
 }
 .gridCellVert {
     @extend .gridCellBase;
-    // background-color: blanchedalmond;
     border-style: solid solid none none;
-    border-color: lightgray;
-    border-width: 1px;
-
     text-align: right;
-    margin: auto;
 }
 .gridCellEdge {
     @extend .gridCellBase;
-    // background-color: blanchedalmond;
     border-style: solid solid none none;
-    border-color: lightgray;
-    border-width: 1px;
-
-    // border-style: dotted dotted none none;
 }

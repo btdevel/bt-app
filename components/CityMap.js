@@ -48,7 +48,7 @@ class CityMap extends React.Component {
             }
         }
         return (
-            <MapGrid height={30} width={30}>
+            <MapGrid height={30} width={30} cellSize={"80%"}>
                 {elements}
             </MapGrid>
         )

@@ -1,0 +1,37 @@
+$col-width: 1em;
+$row-height: 1em;
+$font-size: 0.5em;
+
+.square {
+  box-sizing: border-box;
+  /* overflow: hidden; */
+  width: $col-width;
+  height: $row-height;
+
+  box-sizing: border-box;
+  position: relative;
+}
+
+.square a {
+  outline: none;
+}
+.content {
+  // display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 60%;
+}
+.contentLight {
+  @extend .content;
+  background-color: whitesmoke;
+}
+.contentDark {
+  @extend .content;
+  background-color: darkgray; 
+}
+
+.square:hover .contentLight, .square:hover .contentDark {
+  background-color: yellow;   
+}
+
