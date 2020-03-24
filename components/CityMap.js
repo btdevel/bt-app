@@ -16,10 +16,10 @@ class CityMap extends React.Component {
 
         const city = this.state.city;
         let count = 0;
-        console.log(city)
-        console.log(city.pattern)
-        console.log(city.pattern[0])
-        console.log(city.pattern[0][0])
+        // console.log(city)
+        // console.log(city.pattern)
+        // console.log(city.pattern[0])
+        // console.log(city.pattern[0][0])
         const types = city.types;
         const streets = city.streets; 
         const street_names = city.street_names;

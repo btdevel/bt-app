@@ -150,7 +150,7 @@ const transform_map = (level) => {
         for (let point of level.specials_info) {
             const [[j, i], msg] = point;
             map[i][j].special = msg;
-            console.log({point: [i,j], msg: msg})
+            // console.log({point: [i,j], msg: msg})
         }
     }
 
@@ -166,13 +166,6 @@ const transform_level = (level, index) => {
     return level;
 }
 
-// export function loadLevels(){
-//     const levels = [level00, level01, level02, level03, level04,
-//         level05, level06, level07, level08, level09,
-//         level10, level11, level12, level13, level14, level15];
-
-//     return levels.map(transform_level);
-// }
 
 export async function loadLevel(levnum) {
     const lnum = levnum.toString().padStart(2, '0')
@@ -188,9 +181,9 @@ export async function loadLevel(levnum) {
         Object.assign(levelRaw, levelExtra)
     }
     catch{
-        console.log("Could not load level")
+        console.warn(`Could not load level ${levnum}`)
     }
-    console.log(levelRaw)
+    // console.log(levelRaw)
     const level = transform_level(levelRaw, levnum)
     return level;
 }

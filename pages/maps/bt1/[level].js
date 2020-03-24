@@ -49,11 +49,13 @@ const Level = () => {
     const router = useRouter();
     const levnum = myParseInt(router.query.level);
 
-    if( levnum==undefined ) return <span></span>
+    if( levnum==undefined ) {return <span></span>}
 
     return (
         <Layout>
-            <LevelX levnum={levnum}/>
+            <div>
+                <LevelX levnum={levnum}/>
+            </div>
         </Layout>)
 }
 
