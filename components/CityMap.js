@@ -21,16 +21,20 @@ class CityMap extends React.Component {
         console.log(city.pattern[0])
         console.log(city.pattern[0][0])
         const types = city.types;
-        // streets, street_names
+        const streets = city.streets; 
+        const street_names = city.street_names;
 
         for (let i = 0; i < 30; i++) {
             for (let j = 0; j < 30; j++) {
                 let element;
                 const field = city.pattern[i][j]
+                const street = city.streets[i][j]
+                const text = [<div>{types[field]}</div>];
                 switch (field) {
                     case "00":
                     case "78":
                         element = <div></div>
+                        text.push( [<div>{street_names[street]}</div>]);
                         break;
                     case "60":
                         element = <div>o</div>
@@ -40,10 +44,14 @@ class CityMap extends React.Component {
                         break;
                     default:
                         element = <div className={css.house}></div>
+                        if(field <= "04") {
+                            
+                            text.push(<img width="50%" height="50%" src={`/image/bt1/house${field[1]}/F0.png`}></img>)
+                        }
                 }
                 // !="00" && city.pattern[i][j]!="60"&&city.pattern[i][j]!="68"&&city.pattern[i][j]!="78") {
                 
-                elements[count] = <ToolTip text={types[field]}>{element}</ToolTip>;
+                elements[count] = <ToolTip key={[i,j]} text={text}>{element}</ToolTip>;
                 count++;
             }
         }

@@ -68,9 +68,10 @@ const MapGrid = ({ type, ...props }) => (
 )
 
 MapGrid.propTypes = {
-    height: PropTypes.number,
-    width: PropTypes.number,
-    showNumbers: PropTypes.bool
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+    showNumbers: PropTypes.bool,
+    children: PropTypes.arrayOf(PropTypes.node)
 }
 MapGrid.defaultProps = {
     showNumbers: true,
