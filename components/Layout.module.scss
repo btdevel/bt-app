@@ -5,8 +5,9 @@ $drawerWidth: 10em;
 }
 
 .appBar {
-    width: calc(100% - $drawerWidth);
-    margin-left: calc($drawerWidth);
+    width: calc(100% - #{$drawerWidth});
+    // width: calc(100% - $drawerWidth);
+    margin-left: $drawerWidth;
 }
 
 .drawer {
