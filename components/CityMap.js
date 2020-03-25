@@ -29,12 +29,12 @@ class CityMap extends React.Component {
                 let element;
                 const field = city.pattern[i][j]
                 const street = city.streets[i][j]
-                const text = [<div>{types[field]}</div>];
+                const text = [<div key="type">{types[field]}</div>];
                 switch (field) {
                     case "00":
                     case "78":
                         element = <div></div>
-                        text.push( [<div>{street_names[street]}</div>]);
+                        text.push( [<div key="street">{street_names[street]}</div>]);
                         break;
                     case "60":
                         element = <div>o</div>
@@ -46,7 +46,7 @@ class CityMap extends React.Component {
                         element = <div className={css.house}></div>
                         if(field <= "04") {
                             
-                            text.push(<img width="50%" height="50%" src={`/image/bt1/house${field[1]}/F0.png`}></img>)
+                            text.push(<img key="img" width="50%" height="50%" src={`/image/bt1/house${field[1]}/F0.png`}></img>)
                         }
                 }
                 // !="00" && city.pattern[i][j]!="60"&&city.pattern[i][j]!="68"&&city.pattern[i][j]!="78") {
