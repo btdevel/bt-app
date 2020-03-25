@@ -1,6 +1,6 @@
 import styles from './Square.module.scss'
 import SpecialIcon from './SpecialIcon'
-import { monsters } from './bt1_monsters'
+import loadMonsters, {renderMonsterImage} from './bt1_monsters'
 import ToolTip from './ToolTip'
 
 
@@ -27,6 +27,8 @@ const splitString = (text) => (
         <span key={index}>{line}<br /></span>
     )
 )
+const monsters = loadMonsters()
+
 const updateDescription = (element, desc) => {
     update(desc, element.darkness, "Darkness", null, styles.contentDark)
 
@@ -41,7 +43,7 @@ const updateDescription = (element, desc) => {
 
     update(desc, element.teleport_from, ([i, j]) => <span>Teleport from {i}E, {j}N</span>, "teleport_from")
     update(desc, element.teleport_to, ([i, j]) => <span>Teleport to {i}E, {j}N</span>, "teleport_to")
-    update(desc, element.encounter_num_type, ({ num, type }) => <span>Forced encounter: <i>{num} x {monsters[type]}</i></span>, "forced_encounter")
+    update(desc, element.encounter_num_type, ({ num, type }) => <span>Forced encounter: <i>{num} x {monsters[type-1].name}</i> {renderMonsterImage(monsters[type-1].image)}</span>, "forced_encounter")
     update(desc, element.special, msg => (typeof msg === "string" ? <span>Special: <i>{splitString(msg)}</i></span> : "Special"), "special")
     update(desc, element.message, msg => <span>Message:&nbsp;<i>{splitString(msg)}</i></span>, "message")
 

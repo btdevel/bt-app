@@ -1,14 +1,10 @@
 import Layout from 'components/Layout'
-import loadMonsters from 'components/bt1_monsters'
+import loadMonsters, {renderMonsterImage} from 'components/bt1_monsters'
 
 import MaterialTable from 'material-table'
 import tableIcons from '../../components/tableIcons'
 import Tooltip from '@material-ui/core/Tooltip'
 
-const renderImage = (num) => {
-    const url = `/image/bt1/gifs/amiga/bt1-${num}.gif`
-    return <Tooltip title={<img style={{transform: "scale(2)"}} src={url}/>}><img style={{height: "3em"}} src={url}/></Tooltip>
-}
 const Monsters = () => {
     const monsters = loadMonsters();
     const contents = <MaterialTable
@@ -23,7 +19,7 @@ const Monsters = () => {
             {title: "Max. Group", field: "group"},
             {title: "Special", field: "special"},
             {title: "Image", field: "image", render: rowData => 
-                (rowData.image ? renderImage(rowData.image) : "") }
+                (rowData.image ? renderMonsterImage(rowData.image, true) : "") }
         ]}
         data = {monsters}
         icons = {tableIcons}
