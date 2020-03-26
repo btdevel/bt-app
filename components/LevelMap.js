@@ -5,7 +5,7 @@ import MapGrid from './MapGrid'
 const LevelMap = ({level, makeLink}) => {
     const lmap = level.map;
     const levnum = level.level_number;
-    console.warn({levnum: levnum})
+    
     makeLink = makeLink || ((num, child) => child)
     const prevIsCity = levnum==level.nmax[0];
     const linkNext = child => makeLink(levnum+1, child)

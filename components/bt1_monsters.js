@@ -1,146 +1,29 @@
-// Monsters found in Bard's Tale I:
+import data from 'res/bt1/monsters.json'
+import Tooltip from '@material-ui/core/Tooltip'
 
-export const monsters = [null,
-    "Kobold",
-    "Hobbit",
-    "Gnome",
-    "Dwarf",
-    "Thief",
-    "Hobgoblin",
-    "Conjurer",
-    "Magician",
-    "Orc",
-    "Skeleton",
-    "Nomad",
-    "Spider",
-    "Mad Dog",
-    "Barbarian",
-    "Mercenary",
-    "Wolf",
-    "Jade Monk",
-    "Half Orc",
-    "Swordsman",
-    "Zombie",
-    "Conjurer",
-    "Magician",
-    "Sorcerer",
-    "Wizard",
-    "Samurai",
-    "Black Widow",
-    "Assassin",
-    "Werewolf",
-    "Ogre",
-    "Wight",
-    "Statue",
-    "Bladesman",
-    "Goblin Lord",
-    "Master Thief",
-    "Conjurer",
-    "Magician",
-    "Sorcerer",
-    "Wizard",
-    "Ninja",
-    "Spinner",
-    "Scarlet Monk",
-    "Doppleganger",
-    "Stone Giant",
-    "Ogre Magician",
-    "Jackalwere",
-    "Stone Elemental",
-    "Blue Dragon",
-    "Seeker",
-    "Dwarf King",
-    "Samurai Lord",
-    "Ghoul",
-    "Conjurer",
-    "Magician",
-    "Sorcerer",
-    "Wizard",
-    "Azure Monk",
-    "Weretiger",
-    "Hydra",
-    "Green Dragon",
-    "Wraith",
-    "Lurker",
-    "Fire Giant",
-    "Copper Dragon",
-    "Ivory Monk",
-    "Shadow",
-    "Berserker",
-    "Conjurer",
-    "Magician",
-    "Sorcerer",
-    "Wizard",
-    "White Dragon",
-    "Ice Giant",
-    "Eye Spy",
-    "Ogre Lord",
-    "Body Snatcher",
-    "Xorn",
-    "Phantom",
-    "Lesser Demon",
-    "Fred",
-    "Conjurer",
-    "Magician",
-    "Sorcerer",
-    "Wizard",
-    "Master Ninja",
-    "War Giant",
-    "Warrior Elite",
-    "Bone Crusher",
-    "Ghost",
-    "Grey Dragon",
-    "Basilisk",
-    "Evil Eye",
-    "Mimic",
-    "Golem",
-    "Vampire",
-    "Demon",
-    "Bandersnatch",
-    "Maze Dweller",
-    "Mongo",
-    "Mangar Guard",
-    "Gimp",
-    "Red Dragon",
-    "Titan",
-    "Master Conjurer",
-    "Master Magician",
-    "Master Sorcerer",
-    "Mind Shadow",
-    "Spectre",
-    "Cloud Giant",
-    "Beholder",
-    "Vampire Lord",
-    "Greater Demon",
-    "Master Wizard",
-    "Mad God",
-    "Maze Master",
-    "Death Denizen",
-    "Jabberwock",
-    "Black Dragon",
-    "Mangar",
-    "Crystal Golem",
-    "Soul Sucker",
-    "Storm Giant",
-    "Ancient Enemy",
-    "Balrog",
-    "Lich",
-    "Archmage",
-    "Demon Lord",
-    "Old Man"];
+export default function loadMonsters() {
+    const numMonsters = data.monsters.length
+    const monsters = []
 
+    for( let i=0; i<numMonsters; i++) {
+        const monster = Object.assign({}, data.monsters[i], data.info[i])
+        const hp = monster.hp.split("-").map(s => parseInt(s))
+        monster.hpMin = hp[0]
+        monster.hpMax = hp[1]
+        monster.ac = parseInt(monster.ac)
+        monster.xp = parseInt(monster.xp)
+        monster.group = parseInt(monster.group)
+        monsters.push(monster)
+    }
+    return monsters;
+}
 
-// This list is ripped from the MS-DOS Bard's Tale executable.  I don't
-// know how it compares to other versions of the game.
+const renderMonsterImage = (num, tooltip) => {
+    const url = `/image/bt1/gifs/amiga/bt1-${num}.gif`
+    if(tooltip)
+        return <Tooltip title={<img style={{transform: "scale(2)"}} src={url}/>}><img style={{height: "3em"}} src={url}/></Tooltip>
+    else
+        return <img style={{height: "3em"}} src={url}/>
+}
 
-// Generally speaking, the higher the number, the tougher the monster.
-
-// Some monsters appear several times in the list.  I assume that these
-// are tougher versions that appear later in the game.
-
-// I haven't found any monster lists in the Bard's Tale II or III files
-// yet, but am still looking.
-
-// List created by Troy H. Cheek
-// bard@cheek.org
-// http://www.cheek.org/bard
+export {renderMonsterImage}

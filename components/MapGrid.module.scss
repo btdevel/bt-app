@@ -5,8 +5,8 @@ $gap-width: 0px;
 
 table.grid {
     font-family: sans-serif;
-    // border-collapse: collapse;
-    border-collapse: separate;
+    border-collapse: collapse;
+    // border-collapse: separate;
     border-spacing: $gap-width;
 
     td {

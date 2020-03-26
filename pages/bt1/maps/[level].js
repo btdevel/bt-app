@@ -10,9 +10,9 @@ import LevelMap from '../../../components/LevelMap'
 
 const makeLink = (num,child) => {
     if( (typeof num) === "string" )
-        return (<Link href={`/maps/bt1/${num}`}><a>{child}</a></Link>)
+        return (<Link href={`/bt1/${num}`}><a>{child}</a></Link>)
     else
-        return (<Link href="/maps/bt1/[level]" as={`/maps/bt1/${num}`}><a>{child}</a></Link>)
+        return (<Link href="/bt1/maps/[level]" as={`/maps/bt1/${num}`}><a>{child}</a></Link>)
 }
 
 class LevelX extends React.Component {
@@ -49,11 +49,13 @@ const Level = () => {
     const router = useRouter();
     const levnum = myParseInt(router.query.level);
 
-    if( levnum==undefined ) return <span></span>
+    if( levnum==undefined ) {return <span></span>}
 
     return (
         <Layout>
-            <LevelX levnum={levnum}/>
+            <div>
+                <LevelX levnum={levnum}/>
+            </div>
         </Layout>)
 }
 

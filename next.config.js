@@ -1,7 +1,9 @@
 const withSass = require('@zeit/next-sass')
+const path = require('path');
+
 // module.exports = withSass({
 module.exports = ({
-    cssModules: true
+    cssModules: true,
     // exportTrailingSlash: true,
     // exportPathMap: function() {
     //     const paths = {
@@ -14,4 +16,14 @@ module.exports = ({
     //     console.log(paths)
     //     return paths;
     // }
+    webpack: (config, options) => {
+        config.resolve.modules.push(path.resolve('./'))
+
+        return config
+    },
+
+    // Currently, the indicator is annoying, remove later to check out this auto static optimization
+    devIndicators: {
+        autoPrerender: false,
+    },    
 })

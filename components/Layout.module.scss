@@ -1,0 +1,36 @@
+$drawerWidth: 10em;
+
+.root {
+    display: flex;
+}
+
+.appBar {
+    width: calc(100% - #{$drawerWidth});
+    // width: calc(100% - $drawerWidth);
+    margin-left: $drawerWidth;
+}
+
+.drawer {
+    width: $drawerWidth;
+    flex-shrink: 0;
+}
+
+.drawerPaper {
+    width: $drawerWidth;
+}
+
+// necessary for content to be below app bar
+.toolbar {
+    min-height: 64px;
+    min-width: $drawerWidth;
+}
+// : theme.mixins.toolbar,
+
+.content {
+    flex-grow: 1;
+    // background-color: theme.palette.background.default,
+    // padding: 10px;
+    // padding: theme.spacing(3),
+    margin-left: 1em; //$drawerWidth;
+    // padding: calc($drawerWidth);
+}
