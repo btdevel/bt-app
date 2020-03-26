@@ -12,7 +12,7 @@ const makeLink = (num,child) => {
     if( (typeof num) === "string" )
         return (<Link href={`/bt1/${num}`}><a>{child}</a></Link>)
     else
-        return (<Link href="/bt1/maps/[level]" as={`/maps/bt1/${num}`}><a>{child}</a></Link>)
+        return (<Link href="/bt1/maps/[level]" as={`/bt1/maps/${num}`}><a>{child}</a></Link>)
 }
 
 class LevelX extends React.Component {
