@@ -1,5 +1,6 @@
 import { Button, Paper } from '@material-ui/core'
 import Link from 'next/link'
+import Head from 'next/head'
 import css from './Layout.module.scss'
 import PropTypes from 'prop-types'
 
@@ -37,25 +38,29 @@ import ListItemText from '@material-ui/core/ListItemText';
 export default function Layout({ title, children }) {
     return (
         <div className={css.root}>
+            <Head>
+                <title>{title}</title>
+            </Head>
             <Drawer className={css.drawer} variant="permanent" classes={{paper: css.drawerPaper,}} anchor="left">
                 {/* <div className={css.toolbar} /> */}
                 {/* <Divider /> */}
                 <List>
-                    <MyLink href="/maps/bt1/city" name="City"/>
+                    <MyLink href="/bt1/city" name="City"/>
                     <Divider />
                     <ListItem><ListItemText><b>Dungeons</b></ListItemText></ListItem>
-                    <MyLink href="/maps/bt1/[level]" as="/maps/bt1/0" name="Cellars"/>
-                    <MyLink href="/maps/bt1/[level]" as="/maps/bt1/4" name="Catacombs"/>
-                    <MyLink href="/maps/bt1/[level]" as="/maps/bt1/7" name="Castle"/>
-                    <MyLink href="/maps/bt1/[level]" as="/maps/bt1/10" name="Kylearans"/>
-                    <MyLink href="/maps/bt1/[level]" as="/maps/bt1/11" name="Mangars"/>
+                    <MyLink href="/bt1/maps/[level]" as="/bt1/maps/0" name="Cellars"/>
+                    <MyLink href="/bt1/maps/[level]" as="/bt1/maps/4" name="Catacombs"/>
+                    <MyLink href="/bt1/maps/[level]" as="/bt1/maps/7" name="Castle"/>
+                    <MyLink href="/bt1/maps/[level]" as="/bt1/maps/10" name="Kylearans"/>
+                    <MyLink href="/bt1/maps/[level]" as="/bt1/maps/11" name="Mangars"/>
                     <Divider/>
                     <MyLink href="/bt1/monsters" name="Monsters"/>
                 </List>
             </Drawer>
             <div className={css.content}>
+                <AppBar position="static"/>
                 {/* <div className={css.toolbar} /> */}
-                <h1>{title}</h1>
+                {/* <h1>{title}</h1> */}
                 {children}
             </div>
         </div>

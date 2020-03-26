@@ -9,8 +9,11 @@ export default function loadMonsters() {
         const monster = Object.assign({}, data.monsters[i], data.info[i])
         const hp = monster.hp.split("-").map(s => parseInt(s))
         monster.hpMin = hp[0]
-        monsters.push(monster)
         monster.hpMax = hp[1]
+        monster.ac = parseInt(monster.ac)
+        monster.xp = parseInt(monster.xp)
+        monster.group = parseInt(monster.group)
+        monsters.push(monster)
     }
     return monsters;
 }
