@@ -8,7 +8,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 const Monsters = () => {
     const monsters = loadMonsters();
     const contents = <MaterialTable
-        title="Bard's Tale I - Monsters"
+        // title="Bard's Tale I - Monsters"
+        title=""
         columns = {[
             {title: "Number", field: "dec"},
             {title: "Name", field: "name"},

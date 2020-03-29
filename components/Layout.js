@@ -92,7 +92,17 @@ export default function Layout({ title, children }) {
             </Head>
             <Structure />
             <div className={css.content}>
-                <AppBar position="static" />
+                {/* <AppBar position="static" /> */}
+                <AppBar position="static">
+                    <Toolbar>
+                        {/* <IconButton edge="start" color="inherit" aria-label="menu">
+                            <MenuIcon />
+                        </IconButton> */}
+                        <Typography variant="h6">
+                            {title}
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
                 {/* <div className={css.toolbar} /> */}
                 {/* <h1>{title}</h1> */}
                 {children}
