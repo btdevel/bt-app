@@ -28,7 +28,6 @@ const MapGridCss = ({ width, height, showNumbers, children }) => {
                 {Array.from(Array(width).keys()).map(num => <div key={num} className={css.gridCellHorz}>{num}</div>)}
             </div>
         </div>
-        // <div className={styles.levelMap}>{children}</div>
     )
 }
 

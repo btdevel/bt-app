@@ -1,6 +1,6 @@
-import styles from './Square.module.scss'
+import loadMonsters, { renderMonsterImage } from './bt1_monsters'
 import SpecialIcon from './SpecialIcon'
-import loadMonsters, {renderMonsterImage} from './bt1_monsters'
+import styles from './Square.module.scss'
 import ToolTip from './ToolTip'
 
 

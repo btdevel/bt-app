@@ -1,20 +1,8 @@
-// import CssBaseLine from '@material-ui/core/CssBaseline'
-// import { Fragment } from 'react'
-
-// function MyApp({ Component, pageProps }) {
-//   return <Fragment>
-//     <CssBaseLine />
-//     <Component {...pageProps} />
-//   </Fragment>
-// }
-
-// export default MyApp
-
-import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
 import App from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from 'react';
 import theme from '../src/theme';
 
 export default class MyApp extends App {

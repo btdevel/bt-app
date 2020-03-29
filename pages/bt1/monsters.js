@@ -1,9 +1,8 @@
-import Layout from 'components/Layout'
-import loadMonsters, {renderMonsterImage} from 'components/bt1_monsters'
-
 import MaterialTable from 'material-table'
+import loadMonsters, { renderMonsterImage } from '../../components/bt1_monsters'
+import Layout from '../../components/Layout'
 import tableIcons from '../../components/tableIcons'
-import Tooltip from '@material-ui/core/Tooltip'
+
 
 const Monsters = () => {
     const monsters = loadMonsters();

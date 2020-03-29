@@ -1,11 +1,9 @@
-import React from 'react'
 import Link from 'next/link';
-import {useRouter} from 'next/router';
-
-import Layout from '../../../components/Layout'
-
-import {loadLevel } from '../../../components/bt1_levels'
-import LevelMap from '../../../components/LevelMap'
+import { useRouter } from 'next/router';
+import React from 'react';
+import { loadLevel } from '../../../components/bt1_levels';
+import Layout from '../../../components/Layout';
+import LevelMap from '../../../components/LevelMap';
 
 
 const makeLink = (num,child) => {
