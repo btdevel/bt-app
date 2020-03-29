@@ -157,12 +157,13 @@ const transform_map = (level) => {
     return map;
 }
 
-const transform_level = (level, index) => {
+const transform_level = (level, levnum) => {
     level.height = 22;
     level.width = 22;
-    level.level_number = index;
+    level.level_number = levnum;
     const map = transform_map(level);
     level.map = map;
+    level.fullName = levelNames[levnum]
     return level;
 }
 
@@ -195,3 +196,22 @@ export async function loadLevels() {
     }
     return levels;
 }
+
+export const levelNames = [
+    "Wine Cellar",
+    "Sewers Level 1",
+    "Sewers Level 2",
+    "Sewers Level 3",
+    "Catacombs Level 1",
+    "Catacombs Level 2",
+    "Catacombs Level 3",
+    "Harkyn's Castle Level 1",
+    "Harkyn's Castle Level 2",
+    "Harkyn's Castle Level 3",
+    "Kylearan's Tower",
+    "Mangar's Tower Level 1",
+    "Mangar's Tower Level 2",
+    "Mangar's Tower Level 3",
+    "Mangar's Tower Level 4",
+    "Mangar's Tower Level 5"
+]
