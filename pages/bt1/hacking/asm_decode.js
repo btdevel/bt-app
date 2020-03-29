@@ -34,6 +34,7 @@ const SimpleForm = ({ onTranslate, initialText }) => {
                             <TextField rows={10} name="Foo" margin={"normal"}
                                 type="text"
                                 variant="outlined"
+                                InputProps={{ style: { fontFamily: "monospace" } }}
                                 multiline
                                 fullWidth
                                 inputRef={textfieldRef}
