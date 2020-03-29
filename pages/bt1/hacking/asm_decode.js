@@ -59,7 +59,7 @@ const MyDropTarget = ({ setter, children }) => {
             }}>
                     <div style={{position: "relative", margin: "auto"}}>
                 <div style={{position: "absolute", top: 0, bottom: 0, left: 0, right: 0, margin: "auto", textAlign: "center"}}>
-                    <Typography variant="h1" style={{color: "red", margin: "auto"}}>Drop here...</Typography>
+                    <Typography variant="h1" style={{color: "red", margin: "auto"}}>Drop ASM file<br/>here to translate...</Typography>
                     </div>
                 </div>
         </div>
@@ -68,9 +68,16 @@ const MyDropTarget = ({ setter, children }) => {
 }
 const SimpleForm = ({ onTranslate, initialText }) => {
     const [text, setText] = useState(initialText)
+    const textfieldRef = useRef();
 
     return (
-        <MyDropTarget setter={text => { setText(text); onTranslate(text); }}>
+        <MyDropTarget setter={text => { 
+            setText(text); 
+            onTranslate(text);
+            const tf = textfieldRef.current;
+            tf.scrollTo(0, 0)
+            // tf.scrollTo({top: 0, left: 0, behavior: "smooth"})
+            }}>
             <Paper style={{ padding: "2em" }}>
                 <Formik
                     initialValues={{}}
@@ -83,6 +90,7 @@ const SimpleForm = ({ onTranslate, initialText }) => {
                                 variant="outlined"
                                 multiline
                                 fullWidth
+                                inputRef = {textfieldRef}
                                 placeholder="Enter ASM code..."
                                 value={text}
                                 onChange={event => setText(event.target.value)}
